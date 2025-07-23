@@ -10,8 +10,8 @@ import pandas
 def serialConfig(configFileName):
     global CLIport
     global Dataport
-    CLIport = serial.Serial('COM8', 115200)
-    Dataport = serial.Serial('COM7', 921600)
+    CLIport = serial.Serial('COM7', 115200)
+    Dataport = serial.Serial('COM6', 921600)
     config = [line.rstrip('\r\n') for line in open(configFileName)]
     for i in config:
         print(i)
