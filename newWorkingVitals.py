@@ -220,8 +220,8 @@ def update():
         Breathsignal.append(vitalsign["outputFilterBreathOut"])
         Heartbeatsignal.append(vitalsign["outputFilterHeartOut"])
         Chestdisplacement.append(float(vitalsign["unwrapPhasePeak_mm"]))
-        Breathenerge.append(float(vitalsign["sumEnergyBreathWfm"])/1e6)
-        Heartenerge.append(float(vitalsign["sumEnergyHeartWfm"]))
+        # Breathenerge.append(float(vitalsign["sumEnergyBreathWfm"])/1e6)
+        # Heartenerge.append(float(vitalsign["sumEnergyHeartWfm"]))
 
         if vitalsign.__contains__("RangeProfile"):
             Rangeprofile=vitalsign["RangeProfile"]
@@ -231,24 +231,24 @@ def update():
             Heartbeatsignal.pop(0)
         if len(Chestdisplacement) > 250:
             Chestdisplacement.pop(0)
-        if len(Breathenerge) > 250:
-            Breathenerge.pop(0)
-        if len(Heartenerge) > 250:
-            Heartenerge.pop(0)
+        # if len(Breathenerge) > 250:
+        #     Breathenerge.pop(0)
+        # if len(Heartenerge) > 250:
+        #     Heartenerge.pop(0)
         s1.setData(np.array((list(range(0, 250)), Breathsignal)).T)
         s2.setData(np.array((list(range(0, 250)), Heartbeatsignal)).T)
         s3.setData(np.array((list(range(0, 250)), Chestdisplacement)).T)
-        s4.setData(np.array((list(np.arange(0, numRangeBinProcessed*configParameters["rangeResolutionMeters"], configParameters["rangeResolutionMeters"])), Rangeprofile)).T)
-        s5.setData(np.array((list(range(0, 250)), Breathenerge)).T)
-        s6.setData(np.array((list(range(0, 250)), Heartenerge)).T)
+        #s4.setData(np.array((list(np.arange(0, numRangeBinProcessed*configParameters["rangeResolutionMeters"], configParameters["rangeResolutionMeters"])), Rangeprofile)).T)
+        # s5.setData(np.array((list(range(0, 250)), Breathenerge)).T)
+        # s6.setData(np.array((list(range(0, 250)), Heartenerge)).T)
         labelItem1.setText(text='Breath Rate:' + str(vitalsign["breathingRateEst_FFT"]), size='12pt', color='#000000')
         labelItem2.setText(text='Heart Rate:' + str(vitalsign["heartRateEst_FFT"]), size='12pt', color='#000000')
         QtWidgets.QApplication.processEvents()
 
-    # # commented out debug prints
-    if Dataport.in_waiting > 0:
-        raw = Dataport.read(Dataport.in_waiting)
-        print("Raw data (first 32 bytes):", raw[:32])
+    # # # commented out debug prints
+    # if Dataport.in_waiting > 0:
+    #     raw = Dataport.read(Dataport.in_waiting)
+    #     print("Raw data (first 32 bytes):", raw[:32])
 
     return dataOk
 
@@ -303,33 +303,33 @@ p3.setLabel('bottom', text='Frame (pre index)')
 PEN = pg.mkPen(width=2, color='r')
 s3 = p3.plot([], [], pen=PEN)
 
-p4 = win.addPlot(row=2, col=1)
-p4.setTitle("Range Profile", color='#008080',size='12pt')
-# p4.setXRange(0, numRangeBinProcessed*configParameters["rangeResolutionMeters"])
-# p4.setYRange(0, 20000)
-p4.setLabel('left', text='Magnitude (a.u.)')
-p4.setLabel('bottom', text='Range (m)')
-p4.setYRange(0, 100000, padding=0)
-PEN = pg.mkPen(width=2, color='r')
-s4 = p4.plot([], [], pen=PEN)
+# p4 = win.addPlot(row=2, col=1)
+# p4.setTitle("Range Profile", color='#008080',size='12pt')
+# # p4.setXRange(0, numRangeBinProcessed*configParameters["rangeResolutionMeters"])
+# # p4.setYRange(0, 20000)
+# p4.setLabel('left', text='Magnitude (a.u.)')
+# p4.setLabel('bottom', text='Range (m)')
+# p4.setYRange(0, 100000, padding=0)
+# PEN = pg.mkPen(width=2, color='r')
+# s4 = p4.plot([], [], pen=PEN)
 
-p5 = win.addPlot(row=3, col=0)
-p5.setTitle("Breath Energy", color='#008080',size='12pt')
-p5.setXRange(0, 250)
-# p5.setYRange(0, 20000)
-p5.setLabel('left', text='Wave Energy (a.u.10^6)')
-p5.setLabel('bottom', text='Time (pre 50ms)')
-PEN = pg.mkPen(width=2, color='r')
-s5 = p5.plot([], [], pen=PEN)
+# p5 = win.addPlot(row=3, col=0)
+# p5.setTitle("Breath Energy", color='#008080',size='12pt')
+# p5.setXRange(0, 250)
+# # p5.setYRange(0, 20000)
+# p5.setLabel('left', text='Wave Energy (a.u.10^6)')
+# p5.setLabel('bottom', text='Time (pre 50ms)')
+# PEN = pg.mkPen(width=2, color='r')
+# s5 = p5.plot([], [], pen=PEN)
 
-p6 = win.addPlot(row=3, col=1)
-p6.setTitle("Cardiac Energy", color='#008080',size='12pt')
-p6.setXRange(0, 250)
-# p5.setYRange(0, 20000)
-p6.setLabel('left', text='Wave Energy (a.u.)')
-p6.setLabel('bottom', text='Time (pre 50ms)')
-PEN = pg.mkPen(width=2, color='r')
-s6 = p6.plot([], [], pen=PEN)
+# p6 = win.addPlot(row=3, col=1)
+# p6.setTitle("Cardiac Energy", color='#008080',size='12pt')
+# p6.setXRange(0, 250)
+# # p5.setYRange(0, 20000)
+# p6.setLabel('left', text='Wave Energy (a.u.)')
+# p6.setLabel('bottom', text='Time (pre 50ms)')
+# PEN = pg.mkPen(width=2, color='r')
+# s6 = p6.plot([], [], pen=PEN)
 
 labelItem3 = pg.LabelItem(text='Range Start:')
 win.addItem(labelItem3, row=5, col=0)
@@ -358,4 +358,3 @@ timer.start(40)  # ~25 FPS (1000 ms / 25 = 40)
 app.exec_()
 
         # time.sleep(0.04)         #WAS COMMENTED OUT IN ORIGINAL
-
