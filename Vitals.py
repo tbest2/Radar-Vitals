@@ -1,4 +1,4 @@
-# author: kylin, cql22@mails.tsinghua.edu.cn
+# original author: kylin, cql22@mails.tsinghua.edu.cn
 import serial
 import time
 import numpy as np
