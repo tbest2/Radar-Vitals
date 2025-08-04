@@ -10,8 +10,11 @@ import pandas
 def serialConfig(configFileName):
     global CLIport
     global Dataport
-    CLIport = serial.Serial('COM7', 115200)
-    Dataport = serial.Serial('COM6', 921600)
+
+    # serial ports are currently set for raspberry pi, may require updating on different devices 
+    CLIport = serial.Serial('/dev/ttyACM0', 115200)
+    Dataport = serial.Serial('/dev/ttyACM1', 921600)
+    
     config = [line.rstrip('\r\n') for line in open(configFileName)]
     for i in config:
         print(i)

@@ -13,11 +13,10 @@ import pandas
 from mmVS.com import serialConfig, parseConfigFile
 import sys
 
-#pathing may require updating as it may not match current folders
+#pathing may may not match current folders
 #use pathing for this file profiles/xwr6843_profile_VitalSigns_20fps_Front.cfg
-#first pathing is for raspberry pi
-# configFileName = '/home/ubuntu/Downloads/Radar-Vitals-main/profiles/xwr6843_profile_VitalSigns_20fps_Front.cfg'
-configFileName = 'C:/Users/best27/Downloads/Radar-Vitals-PotentiallySmoother/Radar-Vitals-PotentiallySmoother/profiles/xwr6843_profile_VitalSigns_20fps_Front.cfg'
+#current pathing is for raspberry pi, update accordingly
+configFileName = '/home/ubuntu/Downloads/Radar-Vitals-main/profiles/xwr6843_profile_VitalSigns_20fps_Front.cfg'
 
 
 CLIport = {}
